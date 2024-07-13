@@ -3,8 +3,7 @@ const { MongoClient } = require('mongodb');
 let db;
 
 async function connectToDatabase(uri) {
-  if (db) return db; // Return the existing connection if already connected
-
+  if (db) return db;
   const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -16,7 +15,7 @@ async function connectToDatabase(uri) {
 }
 
 async function closeDatabaseConnection() {
-  if (!db) return; // No connection to close
+  if (!db) return;
 
   await db.client.close();
   db = null;
