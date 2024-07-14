@@ -1,4 +1,4 @@
 # finance-management
-Full stack finance management app
+## Full stack finance management app
 <br>
-Using: node.js, Express, React, MongoDB
+Using: **node.js**, **Express**, **React**, **MongoDB**
