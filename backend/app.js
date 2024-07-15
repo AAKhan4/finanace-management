@@ -1,6 +1,8 @@
 const express = require("express");
 const { connectToDatabase, closeDatabaseConnection } = require("./db/conn.mjs");
 
+const userRoutes = require("./routes/users.js");
+
 const app = express();
 const Router = express.Router();
 const PORT = process.env.PORT || 3000;
@@ -18,15 +20,7 @@ app.use(async (req, res, next) => {
 });
 
 app.use(express.json());
-Router.route("/")
-  .get("/", (res) => {
-    res.status(200).send("Hello World!");
-  })
-  .post("/", (req, res) => {
-    res.status(200);
-    const { name } = req.body;
-    res.status(200).send(`Hi ${name}!`);
-  });
+app.use("/users", userRoutes);
 
 process.on("SIGINT", async () => {
   await closeDatabaseConnection();
