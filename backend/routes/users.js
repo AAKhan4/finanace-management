@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await req.db
       .collection("users")
-      .findOne({ email: req.body.email, password: req.body.password });
+      .findOne({ email: req.body.username, password: req.body.password });
     if (user) res.status(200).send();
     else res.status(401).send();
   } catch (e) {
