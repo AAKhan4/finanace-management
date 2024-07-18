@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const connect = async () => {
     mongoose
-      .connect(process.env.MONGO_URI)
+      .connect(process.env.ATLAS_URI)
       .then(() => {
         console.log('Connected to database');
       })
