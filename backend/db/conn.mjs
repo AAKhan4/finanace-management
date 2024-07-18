@@ -12,4 +12,8 @@ const connect = async () => {
       });
 };
 
-module.exports = connect;
+const closeConnect = async () => {
+    mongoose.connection.close();
+};
+
+module.exports = { connect, closeConnect };
