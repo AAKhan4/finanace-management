@@ -1,34 +1,23 @@
-require("dotenv").config();
 const express = require("express");
-const { connectToDatabase, closeDatabaseConnection } = require("./db/conn.mjs");
+const { connect, closeConnect } = require("./db/conn.mjs");
 
-const userRoutes = require("./routes/users.js");
+const userRoutes = require("./routes/userRoutes/user");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI || "";
 
-app.use(async (req, res, next) => {
-  try {
-    const db = await connectToDatabase(MONGO_URI);
-    req.db = db;
-    next();
-  } catch (e) {
-    console.error(e);
-    res.status(500).send("An error occurred while connecting to the database");
-  }
-});
+connect();
 
 app.use(express.json());
-app.use("/users", userRoutes);
+app.use("/user", userRoutes);
 
 process.on("SIGINT", async () => {
-  await closeDatabaseConnection();
+  await closeConnect();
   process.exit();
 });
 
 process.on("SIGTERM", async () => {
-  await closeDatabaseConnection();
+  await closeConnect();
   process.exit();
 });
 
