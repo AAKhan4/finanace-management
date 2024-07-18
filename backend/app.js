@@ -1,10 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const { connectToDatabase, closeDatabaseConnection } = require("./db/conn.mjs");
 
 const userRoutes = require("./routes/users.js");
 
 const app = express();
-const Router = express.Router();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI || "";
 
