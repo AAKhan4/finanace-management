@@ -1,5 +1,5 @@
 const express = require("express");
-const { connect, closeConnect } = require("./db/conn.mjs");
+const { connect, closeConnect } = require("./db/conn.js");
 
 const userRoutes = require("./routes/userRoutes/user");
 
