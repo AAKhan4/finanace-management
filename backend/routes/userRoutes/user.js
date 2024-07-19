@@ -7,7 +7,7 @@ const User = require("../../models/User");
 router.use("/signup", signup);
 router.use("/login", login);
 router.delete("/logout", (req, res) => {
-  res.clearCookie("token").send("Logged out successfully");
+  res.clearCookie("user").send("Logged out successfully");
 });
 
 router.get("/", (req, res) => {
