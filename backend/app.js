@@ -16,12 +16,12 @@ app.use(cookieParser());
 app.use("/user", userRoutes);
 
 process.on("SIGINT", async () => {
-  await closeConnect();
+  closeConnect();
   process.exit();
 });
 
 process.on("SIGTERM", async () => {
-  await closeConnect();
+  closeConnect();
   process.exit();
 });
 
