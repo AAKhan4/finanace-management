@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../../schema/UserSchema");
 const bcrypt = require("bcryptjs");
-const { generateToken } = require("../../utils/generateToken");
+const generateToken = require("../../utils/generateToken");
 
 router.post("/", async (req, res) => {
   try {
@@ -13,14 +13,14 @@ router.post("/", async (req, res) => {
       return res.status(409).send("Email already in use");
 
     req.body.password = await bcrypt.hash(req.body.password, 11);
-    const user = new User({
+    let user = new User({
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
     });
     user = await user.save();
     res
-      .cookie("token", generateToken(user._id), {
+      .cookie("user", generateToken(user._id), {
         path: "/",
         expires: new Date(Date.now() + 86400000),
         secure: true,
