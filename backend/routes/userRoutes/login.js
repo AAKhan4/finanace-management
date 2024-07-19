@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const router = express.Router();
-const { generateToken } = require("../../utils/generateToken");
+const generateToken = require("../../utils/generateToken");
 const User = require("../../schema/UserSchema");
 
 router.post("/", async (req, res) => {
@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
       return res.status(401).send("Invalid email or password");
 
     res
-      .cookie("token", generateToken(user._id), {
+      .cookie("user", generateToken(user._id), {
         path: "/",
         expires: new Date(Date.now() + 86400000),
         secure: true,
