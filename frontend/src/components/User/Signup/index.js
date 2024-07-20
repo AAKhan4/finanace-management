@@ -52,7 +52,7 @@ export default function Signup() {
             placeholder="Confirm Password"
             name="confirmPassword"
           />
-          <E.Button>Sign up</E.Button>
+          <E.Button type="submit" >Sign up</E.Button>
         </E.Form>
       </E.Wrapper>
     </E.Container>
