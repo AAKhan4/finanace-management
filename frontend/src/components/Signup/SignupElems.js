@@ -28,7 +28,7 @@ export const Title = styled.div`
   text-align: center;
   margin-top: 8px;
   color: ${({ theme }) => theme.text_primary};
-  @media (max-width: 768px) {
+  @media (max-width: 650px) {
     font-size: 32px;
     morgin-top: 0px;
   }
@@ -39,7 +39,7 @@ export const Desc = styled.div`
   text-align: center;
   color: ${({ theme }) => theme.text_secondary};
   margin-bottom: 20px;
-  @media (max-width: 768px) {
+  @media (max-width: 650px) {
     font-size: 16px;
   }
 `;
@@ -51,20 +51,36 @@ export const Form = styled.form`
   align-items: center;
   gap: 12px;
   width: 600px;
-  height: 500px;
+  height: 700px;
   border-radius: 12px;
   border: 3px solid ${({ theme }) => theme.primary};
   background-color: ${({ theme }) => theme.card};
   padding: 24px;
-  @media (max-width: 500px) {
-    width: 380px;
-    height: 340px;
+  @media (max-width: 650px) {
+    width: 400px;
+    height: 550px;
+  }
+  @media (max-width: 460px) {
+    width: 340px;
+    height: 500px;
+  }
+`;
+
+export const Label = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text_primary};
+  align-self: flex-start;
+  margin-top: 8px;
+  margin-left: -6px;
+  @media (max-width: 650px) {
+    font-size: 14px;
   }
 `;
 
 export const Input = styled.input`
   margin-bottom: auto;
-  margin-top: 4px;
+  margin-top: -10px;
   width: 100%;
   height: 60px;
   padding: 0px 12px;
@@ -73,16 +89,16 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.text_secondary};
   background-color: ${({ theme }) => theme.card_light};
   color: ${({ theme }) => theme.text_primary};
-  @media (max-width: 500px) {
+  @media (max-width: 650px) {
     font-size: 14px;
-    margin-top: 0px;
+    margin-top: -8px;
   }
 `;
 
 export const Button = styled.button`
   width: 100%;
-  height: 80px;
-  margin-top: 6px;
+  height: 60px;
+  margin-top: 12px;
   font-size: 16px;
   font-weight: 600;
   border-radius: 8px;
@@ -90,11 +106,11 @@ export const Button = styled.button`
   background-color: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.text_primary};
   cursor: pointer;
-  @media (max-width: 500px) {
+  @media (max-width: 650px) {
     font-size: 14px;
-    margin-top: 0px;
+    margin-top: 6px;
   }
   &:hover {
-    background-color: ${({ theme }) => theme.primary + 99};
+    background-color: ${({ theme }) => theme.primary_dark};
   }
 `;
