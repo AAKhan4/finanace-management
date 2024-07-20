@@ -1,5 +1,6 @@
 export const lightTheme = {
     primary: '#76dd67',
+    primary_dark: '#65cc56',
     secondary: '#f9f9ef',
     text_primary: '#1c1c1c',
     text_secondary: '#272727',
@@ -12,6 +13,7 @@ export const lightTheme = {
 
 export const darkTheme = {
     primary: '#76dd56',
+    primary_dark: '#65cc45',
     secondary: '#272727',
     text_primary: '#fffffa',
     text_secondary: '#f9f9ef',
