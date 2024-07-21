@@ -17,9 +17,7 @@ export const Wrapper = styled.div`
   width: 100%;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   max-width: 1400px;
 `;
-
-
