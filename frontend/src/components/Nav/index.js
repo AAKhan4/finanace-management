@@ -7,6 +7,7 @@ export default function Nav() {
       <E.Wrapper>
         <E.Logo href="/"><E.Name>FinMan</E.Name></E.Logo>
         <E.ButtonContainer>
+          <E.Button href="/">Home</E.Button>
           <E.Button href="/login">Login</E.Button>
           <E.Button href="/signup">Signup</E.Button>
         </E.ButtonContainer>
