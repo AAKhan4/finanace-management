@@ -9,6 +9,8 @@ export const lightTheme = {
     card_dark: '#f7f7f1',
     black: '#000',
     white: '#fff',
+    green: '#76dd67',
+    red: '#ff4d4d',
 };
 
 export const darkTheme = {
@@ -22,4 +24,6 @@ export const darkTheme = {
     card_dark: '#252529',
     black: '#000',
     white: '#fff',
+    green: '#76dd56',
+    red: '#ff4d4d',
 };
