@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import * as E from "./NavbarElems";
 
 export default function Sidebar() {
+  const [toggle, setToggle] = useState("general");
+  const path = "/settings/#";
   return (
     <E.Container>
       <E.Wrapper>
-        <E.Option href="/settings/#general">General</E.Option>
-        <E.Option href="/settings/#security">Security</E.Option>
-        <E.Option href="/settings/#notifications">Notifications</E.Option>
-        <E.Option href="/settings/#billing">Billing</E.Option>
-        <E.Option href="/settings/#privacy">Privacy</E.Option>
+      {["general", "security", "notification", "billing", "privacy"].map((option) => (
+          <E.Option
+            active={toggle === option}
+            onClick={() => setToggle(option)}
+            href={path + option}
+          >
+            {option.toUpperCase()}
+          </E.Option>
+        ))}
       </E.Wrapper>
     </E.Container>
   );
