@@ -108,7 +108,6 @@ export const FieldButton = styled.button`
   font-weight: 500;
   color: ${({ theme }) => theme.card_dark};
   background-color: ${({ theme }) => theme.primary};
-  border: none;
   border-radius: 10px;
   border: 2px solid ${({ theme }) => theme.primary};
   cursor: pointer;
@@ -117,5 +116,38 @@ export const FieldButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.primary};
+  }
+`;
+
+export const Accept = styled.button`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.card_dark};
+  background-color: ${({ theme }) => theme.green};
+  border-radius: 10px;
+  border: 2px solid ${({ theme }) => theme.green};
+  cursor: pointer;
+  margin-right: 14px;
+  padding: 4px 9px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.green};
+  }
+`;
+
+export const Cancel = styled.button`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.card_dark};
+  background-color: ${({ theme }) => theme.red};
+  border-radius: 10px;
+  border: 2px solid ${({ theme }) => theme.red};
+  cursor: pointer;
+  padding: 4px 9px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.red};
   }
 `;
