@@ -114,3 +114,19 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.primary_dark};
   }
 `;
+
+export const Link = styled.a`
+  font-size: 16px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text_primary};
+  cursor: pointer;
+  margin-top: 12px;
+  @media (max-width: 650px) {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    text-decoration: underline;
+  }
+`;
