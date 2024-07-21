@@ -5,11 +5,13 @@ import { lightTheme, darkTheme } from "./utils/Themes";
 import { useState } from "react";
 import Signup from "./components/User/Signup";
 import Login from "./components/User/Login";
+import Nav from "./components/Nav";
 
 function App() {
   const [lightMode, setLightMode] = useState(true);
   return (
     <ThemeProvider theme={lightMode ? lightTheme : darkTheme}>
+      <Nav />
       <Router>
         <Routes>
           <Route path="/signup" element={<Signup />} />
