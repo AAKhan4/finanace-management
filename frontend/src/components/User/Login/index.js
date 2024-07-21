@@ -2,10 +2,9 @@ import React, { useRef } from "react";
 import * as E from "../UserElems";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-require("dotenv").config();
 
 export default function Login() {
-  const path = process.env.BACKEND_URL + "/user/login";
+  const path = "http://localhost:5050/user/login";
   const form = useRef(null);
   const navigate = useNavigate();
 
@@ -40,6 +39,7 @@ export default function Login() {
           <E.Input type="password" placeholder="Password" name="password" />
           <E.Button type="submit" >Log in</E.Button>
         </E.Form>
+        <E.Link to="/user/signup">Don't have an account? Sign up here.</E.Link>
       </E.Wrapper>
     </E.Container>
   );
