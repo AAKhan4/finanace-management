@@ -73,7 +73,7 @@ export const Button = styled.a`
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 2px solid ${({ theme }) => theme.card_dark};
   transition: all 0.3s ease-in-out;
   &:hover {
