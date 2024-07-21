@@ -9,8 +9,8 @@ export const UserProvider = ({ children }) => {
   const [token, setToken] = useState(Cookies.get("user"));
 
   useEffect(() => {
-    const fetchUser = (token) => {
-      if (token) {
+    const fetchUser = (t) => {
+      if (t) {
         try {
           const res = axios.get("/user");
           setUser(res.data);
