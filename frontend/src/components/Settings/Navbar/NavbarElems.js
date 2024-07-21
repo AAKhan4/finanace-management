@@ -36,8 +36,14 @@ export const Option = styled.a`
   width: 100%;
   color: ${({ theme }) => theme.text_secondary};
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  ${({ active, theme }) =>
+    active &&
+    `
+        color: ${theme.card_dark};
+        background-color: ${theme.primary + 80};
+    `}
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   @media screen and (max-width: 650px) {
@@ -45,7 +51,11 @@ export const Option = styled.a`
     morgin-top: 0px;
   }
   &:hover {
-    color: ${({ theme }) => theme.text_primary};
-    background-color: ${({ theme }) => theme.primary+30};
+    ${({ active, theme }) =>
+      !active &&
+      `
+        color: ${theme.text_primary};
+        background-color: ${theme.primary + 30};
+    `}
   }
 `;
