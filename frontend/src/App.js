@@ -8,6 +8,7 @@ import Signup from "./components/User/Signup";
 import Login from "./components/User/Login";
 import Logout from "./components/User/Logout";
 import Nav from "./components/Nav";
+import Settings from "./components/Settings";
 
 function App() {
   const [lightMode, setLightMode] = useState(true);
@@ -20,6 +21,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </Router>
       </UserProvider>
