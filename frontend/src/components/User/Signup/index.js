@@ -2,10 +2,9 @@ import React, { useRef } from "react";
 import * as E from "../UserElems";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-require("dotenv").config();
 
 export default function Signup() {
-  const path = process.env.BACKEND_URL + "/user/signup";
+  const path = "http://localhost:5050/user/signup";
   const form = useRef(null);
   const navigate = useNavigate();
 
