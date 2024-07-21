@@ -66,7 +66,6 @@ export const Button = styled.a`
   background-color: transparent;
   margin-left: 16px;
   color: ${({ theme }) => theme.card_light};
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,6 +79,27 @@ export const Button = styled.a`
   &:hover {
     background-color: ${({ theme }) => theme.card_dark};
     color: ${({ theme }) => theme.primary};
+  }
+  @media screen and (max-width: 640px) {
+    margin-right: 0px;
+  }
+`;
+
+export const User = styled.a`
+  text-decoration: none;
+  text-weight: bold;
+  background-color: transparent;
+  margin-left: 16px;
+  color: ${({ theme }) => theme.card_light};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    text-decoration: underline;
   }
   @media screen and (max-width: 640px) {
     margin-right: 0px;
