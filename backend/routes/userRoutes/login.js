@@ -27,4 +27,12 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/", async (req, res) => {
+  try {
+    res.clearCookie("user").status(200).send("Logged out successfully");
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 module.exports = router;
