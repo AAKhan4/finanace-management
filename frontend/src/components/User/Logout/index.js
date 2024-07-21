@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function Logout() {
   const navigate = useNavigate();
+  const path = "http://localhost:5050/user/login";
   const handleLogout = () => {
     axios
-      .delete("/logout")
+      .delete(path)
       .then((res) => {
         console.log(res);
         navigate("/login");
