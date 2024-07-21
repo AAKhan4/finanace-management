@@ -11,7 +11,7 @@ export const Container = styled.div`
   position: sticky;
   top: 80px;
   padding: 0px 20px;
-  z-index: 999;
+  z-index: 99;
   border-bottom: 1px solid ${({ theme }) => theme.primary};
   @media screen and (max-width: 960px) {
     transition: 0.8s all ease;
