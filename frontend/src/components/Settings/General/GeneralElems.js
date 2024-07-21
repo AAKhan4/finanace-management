@@ -31,6 +31,7 @@ export const Section = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  padding: 20px;
   margin-bottom: 20px;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.primary + 20};
@@ -46,7 +47,7 @@ export const SectionTitle = styled.div`
   font-size: 24px;
   font-weight: 500;
   color: ${({ theme }) => theme.text_primary};
-  margin: 10px 0px;
+  margin-bottom: 10px;
   align-self: center;
 `;
 
