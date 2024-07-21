@@ -24,6 +24,7 @@ router.delete("/", (req, res) => {
 
   const user = User.findByIdAndDelete(req.cookies.user);
   if (!user) return res.status(404).send("User not found");
+  res.clearCookie("user");
 
   res.status(200).send("User deleted successfully");
 });
