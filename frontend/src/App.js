@@ -6,6 +6,7 @@ import { useState } from "react";
 import { UserProvider } from "./context/UserContext";
 import Signup from "./components/User/Signup";
 import Login from "./components/User/Login";
+import Logout from "./components/User/Logout";
 import Nav from "./components/Nav";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </Router>
       </UserProvider>
