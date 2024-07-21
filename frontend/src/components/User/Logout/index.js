@@ -1,16 +1,19 @@
-import React from "react";
-import { Title } from "../UserElems";
+import React, { useContext } from "react";
+import { Container, Wrapper, Title } from "../UserElems";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context/UserContext";
 
 export default function Logout() {
   const navigate = useNavigate();
+  const { setToken } = useContext(UserContext);
   const path = "http://localhost:5050/user/login";
   const handleLogout = () => {
     axios
       .delete(path)
       .then((res) => {
         console.log(res);
+        setToken(null);
         navigate("/login");
       })
       .catch((err) => {
@@ -19,7 +22,11 @@ export default function Logout() {
   };
   return (
     <div>
-      <Title>Logging out...</Title>
+      <Container>
+        <Wrapper>
+          <Title>Logging out...</Title>
+        </Wrapper>
+      </Container>
       {handleLogout()}
     </div>
   );
