@@ -106,6 +106,7 @@ export const Button = styled.button`
   background-color: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.text_primary};
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
   @media (max-width: 650px) {
     font-size: 14px;
     margin-top: 6px;
@@ -121,6 +122,8 @@ export const Link = styled.a`
   color: ${({ theme }) => theme.text_primary};
   cursor: pointer;
   margin-top: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
   @media (max-width: 650px) {
     font-size: 14px;
     margin-top: 4px;
