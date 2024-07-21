@@ -53,6 +53,7 @@ export default function Signup() {
           />
           <E.Button type="submit" >Sign up</E.Button>
         </E.Form>
+        <E.Link href="/login">Already have an account? Log in here.</E.Link>
       </E.Wrapper>
     </E.Container>
   );
