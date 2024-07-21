@@ -1,11 +1,9 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import * as E from "./GeneralElems";
 import { UserContext } from "../../../context/UserContext";
 import Accounts from "./Accounts";
 
 export default function General() {
-  const { user, setToken } = useContext(UserContext);
-
   return (
     <E.Container>
       <E.Wrapper>
