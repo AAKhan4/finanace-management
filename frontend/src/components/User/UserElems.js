@@ -120,10 +120,10 @@ export const Link = styled.a`
   font-weight: 600;
   color: ${({ theme }) => theme.text_primary};
   cursor: pointer;
-  margin-top: 12px;
+  margin-top: 6px;
   @media (max-width: 650px) {
     font-size: 14px;
-    margin-top: 6px;
+    margin-top: 4px;
   }
   &:hover {
     color: ${({ theme }) => theme.primary};
