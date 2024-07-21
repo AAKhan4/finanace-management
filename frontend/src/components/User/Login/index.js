@@ -39,7 +39,7 @@ export default function Login() {
           <E.Input type="password" placeholder="Password" name="password" />
           <E.Button type="submit" >Log in</E.Button>
         </E.Form>
-        <E.Link to="/user/signup">Don't have an account? Sign up here.</E.Link>
+        <E.Link href="/signup">Don't have an account? Sign up here.</E.Link>
       </E.Wrapper>
     </E.Container>
   );
