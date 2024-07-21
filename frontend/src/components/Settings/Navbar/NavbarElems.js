@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.card_dark};
   width: 100%;
-  height: 80%;
+  height: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: sticky;
-  top: 80px;
+  top: 60px;
   padding: 0px 20px;
   z-index: 99;
   border-bottom: 1px solid ${({ theme }) => theme.primary};
