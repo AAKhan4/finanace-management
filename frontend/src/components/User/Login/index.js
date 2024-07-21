@@ -1,9 +1,12 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import * as E from "../UserElems";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context/UserContext";
+import Cookies from "js-cookie";
 
 export default function Login() {
+  const { setToken } = useContext(UserContext);
   const path = "http://localhost:5050/user/login";
   const form = useRef(null);
   const navigate = useNavigate();
@@ -20,6 +23,7 @@ export default function Login() {
       .post(path, user)
       .then((res) => {
         console.log(res);
+        setToken(Cookies.get("user"));
         navigate("/");
       })
       .catch((err) => {
