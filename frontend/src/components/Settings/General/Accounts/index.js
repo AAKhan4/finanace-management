@@ -5,7 +5,7 @@ import { UserContext } from "../../../../context/UserContext";
 import Cookies from "js-cookie";
 
 export default function Accounts() {
-  const basePath = "http://localhost:5050/";
+  const path = "http://localhost:5050/user";
   const demoUser = {
     username: "demo",
     email: "demo@example.com",
@@ -22,7 +22,7 @@ export default function Accounts() {
 
   const handleUserSubmit = () => {
     axios
-      .patch(`${basePath}user`, { username: name })
+      .patch(path, { username: name })
       .then((res) => {
         console.log(res);
         setToken(null);
@@ -40,7 +40,7 @@ export default function Accounts() {
 
   const handleEmailSubmit = () => {
     axios
-      .patch(`${basePath}user`, { email: email })
+      .patch(path, { email: email })
       .then((res) => {
         console.log(res);
         setToken(null);
