@@ -49,7 +49,15 @@ export const Option = styled.a`
   transition: all 0.2s ease-in-out;
   @media screen and (max-width: 650px) {
     font-size: 16px;
-    morgin-top: 0px;
+    font-weight: 450;
+  }
+  @media screen and (max-width: 560px) {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  @media screen and (max-width: 460px) {
+    font-size: 10px;
+    font-weight: 600;
   }
   &:hover {
     color: ${({ theme }) => theme.text_primary};
