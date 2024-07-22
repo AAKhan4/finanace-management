@@ -60,18 +60,26 @@ export default function Accounts() {
 
       return (
         <E.Field key={field}>
-          <E.FieldTitle>{field === "u" ? "Username" : "Email"}</E.FieldTitle>
+          <E.FieldTitleContainer>
+            <E.FieldTitle>{field === "u" ? "Username" : "Email"}</E.FieldTitle>
+          </E.FieldTitleContainer>
           {toggle ? (
             <>
-              <E.FieldInput
-                onChange={(e) => {
-                  field === "u"
-                    ? setName(e.target.value)
-                    : setEmail(e.target.value);
-                }}
-                placeholder={field === "u" ? demoUser.username : demoUser.email}
-                defaultValue={field === "u" ? demoUser.username : demoUser.email}
-              />
+              <E.FieldValContainer>
+                <E.FieldInput
+                  onChange={(e) => {
+                    field === "u"
+                      ? setName(e.target.value)
+                      : setEmail(e.target.value);
+                  }}
+                  placeholder={
+                    field === "u" ? demoUser.username : demoUser.email
+                  }
+                  defaultValue={
+                    field === "u" ? demoUser.username : demoUser.email
+                  }
+                />
+              </E.FieldValContainer>
               <E.FieldButtonContainer>
                 <E.Accept onClick={handleSubmit}>Y</E.Accept>
                 <E.Cancel onClick={handleToggle}>N</E.Cancel>
