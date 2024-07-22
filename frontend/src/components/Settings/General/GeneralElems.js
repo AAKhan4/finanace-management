@@ -50,6 +50,12 @@ export const SectionTitle = styled.div`
   color: ${({ theme }) => theme.text_primary};
   margin-bottom: 10px;
   align-self: center;
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 640px) {
+    font-size: 18px;
+  }
 `;
 
 export const Field = styled.div`
@@ -79,6 +85,7 @@ export const FieldValContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 75%;
 `;
 
 export const FieldVal = styled.div`
