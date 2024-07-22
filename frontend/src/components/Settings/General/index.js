@@ -1,6 +1,7 @@
 import React from "react";
 import * as E from "./GeneralElems";
 import Accounts from "./Accounts";
+import Password from "./Password";
 
 export default function General() {
   return (
@@ -13,6 +14,7 @@ export default function General() {
         </E.Section>
         <E.Section>
           <E.SectionTitle>Password</E.SectionTitle>
+          <Password />
         </E.Section>
         <E.Section>
           <E.SectionTitle>Appearance</E.SectionTitle>
