@@ -72,26 +72,53 @@ export const FieldTitleContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  min-width: 20%;
+  margin-right: 12px;
 `;
 
 export const FieldTitle = styled.div`
   font-size: 16px;
   font-weight: bold;
   color: ${({ theme }) => theme.text_primary};
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 11px;
+  }
+  @media screen and (max-width: 510px) {
+    font-size: 10px;
+  }
 `;
 
 export const FieldValContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 75%;
+  width: 80%;
+  margin-right: 32px;
+  @media screen and (max-width: 768px) {
+    margin-right: 16px;
+  }
+  @media screen and (max-width: 640px) {
+    margin-right: 8px;
+  }
 `;
 
 export const FieldVal = styled.div`
   font-size: 16px;
   font-weight: 400;
   color: ${({ theme }) => theme.text_primary};
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 11px;
+  }
+  @media screen and (max-width: 510px) {
+    font-size: 10px;
+  }
 `;
 
 export const FieldInput = styled.input`
@@ -102,13 +129,15 @@ export const FieldInput = styled.input`
   border: 1px solid ${({ theme }) => theme.text_secondary};
   border-radius: 10px;
   padding: 4px 8px;
-  margin-left: 24px;
   margin-right: 12px;
-  @media screen and (max-width: 768px) {
-    font-size: 14px;
-  }
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 960px) {
     font-size: 12px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 11px;
+  }
+  @media screen and (max-width: 510px) {
+    font-size: 10px;
   }
 `;
 
@@ -133,6 +162,15 @@ export const FieldButton = styled.button`
     background-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.primary};
   }
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 11px;
+  }
+  @media screen and (max-width: 510px) {
+    font-size: 10px;
+  }
 `;
 
 export const Accept = styled.button`
@@ -150,6 +188,18 @@ export const Accept = styled.button`
     background-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.green};
   }
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+    margin-right: 6px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 11px;
+    margin-right: 4px;
+  }
+  @media screen and (max-width: 510px) {
+    font-size: 10px;
+    margin-right: 2px;
+  }
 `;
 
 export const Cancel = styled.button`
@@ -165,5 +215,14 @@ export const Cancel = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.red};
+  }
+  @media screen and (max-width: 960px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 11px;
+  }
+  @media screen and (max-width: 510px) {
+    font-size: 10px;
   }
 `;
