@@ -88,7 +88,7 @@ export const FieldVal = styled.div`
 
 export const FieldInput = styled.input`
   font-size: 16px;
-  width: 60%;
+  width: 100%;
   font-weight: 400;
   text-align: center;
   border: 1px solid ${({ theme }) => theme.text_secondary};
