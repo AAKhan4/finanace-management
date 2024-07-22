@@ -58,6 +58,20 @@ export const SectionTitle = styled.div`
   }
 `;
 
+export const SectionSubtitle = styled.div`
+  font-size: 18px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.text_secondary};
+  margin-bottom: 10px;
+  align-self: center;
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 640px) {
+    font-size: 14px;
+  }
+`;
+
 export const Field = styled.div`
   display: flex;
   width: 90%;
