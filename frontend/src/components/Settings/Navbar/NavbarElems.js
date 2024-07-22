@@ -10,6 +10,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   position: sticky;
+  top: 60px;
   padding: 0px 20px;
   z-index: 99;
   @media screen and (max-width: 960px) {
