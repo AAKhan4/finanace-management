@@ -26,7 +26,7 @@ export default function Accounts() {
       .then((res) => {
         console.log(res);
         setToken(null);
-        setToken(Cookies.get("token"));
+        setToken(Cookies.get("user"));
         setUserToggle(false);
       })
       .catch((err) => {
@@ -44,8 +44,8 @@ export default function Accounts() {
       .then((res) => {
         console.log(res);
         setToken(null);
-        setToken(Cookies.get("token"));
-        setUserToggle(false);
+        setToken(Cookies.get("user"));
+        setEmailToggle(false);
       })
       .catch((err) => {
         console.log(err);
