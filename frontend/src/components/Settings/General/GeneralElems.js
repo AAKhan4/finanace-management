@@ -23,6 +23,7 @@ export const Title = styled.div`
   font-weight: 600;
   color: ${({ theme }) => theme.text_primary};
   margin: 20px 0px;
+  margin-top: 60px;
 `;
 
 export const Section = styled.div`
