@@ -18,6 +18,10 @@ export default function Signup() {
       alert("Passwords do not match.");
       return;
     }
+    if (data.password.value.length < 8) {
+      alert("Password must be at least 8 characters long.");
+      return;
+    }
 
     const user = {
       username: data.name.value,
