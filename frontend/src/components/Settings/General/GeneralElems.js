@@ -95,6 +95,13 @@ export const FieldInput = styled.input`
   border-radius: 10px;
   padding: 4px 8px;
   margin-left: 24px;
+  margin-right: 12px;
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 640px) {
+    font-size: 12px;
+  }
 `;
 
 export const FieldButtonContainer = styled.div`
