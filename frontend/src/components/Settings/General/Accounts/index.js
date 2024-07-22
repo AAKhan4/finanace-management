@@ -99,5 +99,10 @@ export default function Accounts() {
       );
     });
   };
-  return renderAccountsFields();
+  return (
+    <>
+      <E.SectionSubtitle style={{ textAlign: "center" }}>User Details & Information</E.SectionSubtitle>
+      {renderAccountsFields()}
+    </>
+  );
 }
