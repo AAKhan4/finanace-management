@@ -4,7 +4,7 @@ import Accounts from "./Accounts";
 
 export default function General() {
   return (
-    <E.Container>
+    <E.Container id="general">
       <E.Wrapper>
         <E.Title>General Settings</E.Title>
         <E.Section>
