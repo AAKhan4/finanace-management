@@ -11,6 +11,7 @@ export const lightTheme = {
     white: '#fff',
     green: '#76dd67',
     red: '#ff4d4d',
+    blue: '#4d8fff',
 };
 
 export const darkTheme = {
@@ -26,4 +27,5 @@ export const darkTheme = {
     white: '#fff',
     green: '#76dd56',
     red: '#ff4d4d',
+    blue: '#0d4fff',
 };
