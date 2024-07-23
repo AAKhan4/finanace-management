@@ -2,6 +2,7 @@ import React from "react";
 import * as E from "./GeneralElems";
 import Accounts from "./Accounts";
 import Password from "./Password";
+import Appearance from "./Appearance";
 
 export default function General() {
   return (
@@ -18,6 +19,7 @@ export default function General() {
         </E.Section>
         <E.Section>
           <E.SectionTitle>Appearance</E.SectionTitle>
+          <Appearance />
         </E.Section>
       </E.Wrapper>
     </E.Container>
