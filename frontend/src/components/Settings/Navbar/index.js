@@ -7,7 +7,7 @@ export default function Sidebar() {
   return (
     <E.Container>
       <E.Wrapper>
-      {["general", "security", "notification", "billing", "privacy"].map((option) => (
+      {["general", "secrets", "notification", "advanced settings"].map((option) => (
           <E.Option
             active={toggle === option}
             onClick={() => setToggle(option)}
