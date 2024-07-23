@@ -1,6 +1,6 @@
 import React from "react";
 import * as E from "./GeneralElems";
-import Accounts from "./Accounts";
+import Accounts from "./Account";
 import Password from "./Password";
 import Appearance from "./Appearance";
 
