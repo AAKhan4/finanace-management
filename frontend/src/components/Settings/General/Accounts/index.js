@@ -6,10 +6,14 @@ import Cookies from "js-cookie";
 
 export default function Accounts() {
   const path = "http://localhost:5050/user";
-  const demoUser = {
-    username: "demo",
-    email: "demo@example.com",
-  };
+  const { user } = useContext(UserContext);
+  let demoUser = user;
+  if (!demoUser)
+    demoUser = {
+      username: "demo",
+      email: "demo@example.com",
+    };
+
   const { setToken } = useContext(UserContext);
   const [userToggle, setUserToggle] = useState(false);
   const [name, setName] = useState(demoUser.username);
@@ -101,7 +105,9 @@ export default function Accounts() {
   };
   return (
     <>
-      <E.SectionSubtitle style={{ textAlign: "center" }}>User Details & Information</E.SectionSubtitle>
+      <E.SectionSubtitle style={{ textAlign: "center" }}>
+        User Details & Information
+      </E.SectionSubtitle>
       {renderAccountsFields()}
     </>
   );
