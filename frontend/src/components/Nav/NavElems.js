@@ -68,7 +68,7 @@ export const Button = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
+  padding: 6px 14px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
