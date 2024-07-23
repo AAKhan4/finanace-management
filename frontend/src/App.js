@@ -1,6 +1,7 @@
 import "./App.css";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeProvider, ThemeContext } from "./context/ThemeContext";
 import { UserProvider } from "./context/UserContext";
 import Signup from "./components/User/Signup";
 import Login from "./components/User/Login";
@@ -9,6 +10,7 @@ import Nav from "./components/Nav";
 import Settings from "./components/Settings";
 
 function App() {
+
   return (
     <ThemeProvider>
       <UserProvider>
