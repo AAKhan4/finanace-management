@@ -36,7 +36,7 @@ export default function Appearance() {
   return (
     <>
       <E.SectionSubtitle>Website Theme</E.SectionSubtitle>
-      <E.Field>
+      <E.Field style={{justifyContent: 'center'}}>
         <A.AppearanceContainer>{renderOptions()}</A.AppearanceContainer>
       </E.Field>
     </>
