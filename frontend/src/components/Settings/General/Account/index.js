@@ -3,9 +3,11 @@ import * as E from "../GeneralElems";
 import axios from "axios";
 import { UserContext } from "../../../../context/UserContext";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export default function Accounts() {
   const path = "http://localhost:5050/user";
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
   let demoUser = user;
   if (!demoUser)
@@ -19,6 +21,7 @@ export default function Accounts() {
   const [name, setName] = useState(demoUser.username);
   const [emailToggle, setEmailToggle] = useState(false);
   const [email, setEmail] = useState(demoUser.email);
+  const [deleteToggle, setDeleteToggle] = useState(false);
 
   const handleUserToggle = () => {
     setUserToggle(!userToggle);
@@ -50,6 +53,20 @@ export default function Accounts() {
         setToken(null);
         setToken(Cookies.get("user"));
         setEmailToggle(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleAccountDelete = () => {
+    axios
+      .delete(path)
+      .then((res) => {
+        console.log(res);
+        setToken(null);
+        Cookies.remove("user");
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
@@ -109,6 +126,47 @@ export default function Accounts() {
         User Details & Information
       </E.SectionSubtitle>
       {renderAccountsFields()}
+      {!deleteToggle ? (
+        <E.Field style={{ justifyContent: "center", marginTop: "40px" }}>
+          <E.Cancel
+            onClick={() => {
+              setDeleteToggle(!deleteToggle);
+            }}
+          >
+            Delete Account
+          </E.Cancel>
+        </E.Field>
+      ) : (
+        <>
+          <E.Field
+            style={{
+              justifyContent: "center",
+              marginTop: "40px",
+              flexDirection: "column",
+            }}
+          >
+            <E.FieldTitle style={{ textAlign: "center" }}>
+              Deleting your account will result in all data being lost.
+            </E.FieldTitle>
+            <E.FieldTitle style={{ textAlign: "center" }}>
+              Are you sure you want to delete your account?
+            </E.FieldTitle>
+          </E.Field>
+          <E.Field style={{ justifyContent: "center", marginTop: "40px" }}>
+            <E.Cancel style={{ marginRight: 20 }} onClick={handleAccountDelete}>
+              Confirm Delete
+            </E.Cancel>
+            <E.Accept
+              style={{ marginRight: 0 }}
+              onClick={() => {
+                setDeleteToggle(!deleteToggle);
+              }}
+            >
+              Cancel
+            </E.Accept>
+          </E.Field>
+        </>
+      )}
     </>
   );
 }
