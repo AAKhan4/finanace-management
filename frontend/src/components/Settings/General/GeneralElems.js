@@ -79,6 +79,15 @@ export const Field = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 10px 32px;
+  @media screen and (max-width: 768px) {
+    margin: 10px 16px;
+  }
+  @media screen and (max-width: 640px) {
+    margin: 10px 8px;
+  }
+  @media screen and (max-width: 460px) {
+    margin: 10px 4px;
+  }
 `;
 
 export const FieldTitleContainer = styled.div`
