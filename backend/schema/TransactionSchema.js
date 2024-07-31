@@ -12,7 +12,7 @@ const transactionSchema = new mongoose.Schema({
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "category",
-    required: false,
+    required: true,
   },
   wallet: {
     type: mongoose.Schema.Types.ObjectId,
