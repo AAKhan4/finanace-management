@@ -2,6 +2,7 @@ const express = require("express");
 const { connect, closeConnect } = require("./db/conn.js");
 
 const userRoutes = require("./routes/userRoutes/user");
+const walletRoutes = require("./routes/walletRoutes/wallet");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use("/user", userRoutes);
+app.use("/wallet", walletRoutes);
 
 process.on("SIGINT", async () => {
   closeConnect();
