@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Budget = require("../../models/Budget");
 const BudgetWallet = require("../../models/BudgetWallet");
+const BudgetCategory = require("../../models/BudgetCategory");
 const mongoose = require("mongoose");
 
 router.get("/", async (req, res) => {
@@ -25,10 +26,23 @@ router.get("/:id", async (req, res) => {
   res.status(200).json(budget);
 });
 
-router.get("/category/:id", async (req, res) => {
+router.get("/category/:ids", async (req, res) => {
   try {
+    const ids = req.params.ids
+      .split(",")
+      .map((id) => mongoose.Types.ObjectId(id));
+
+    const budgetIDs = await BudgetCategory.aggregate(
+      [
+        { $match: { category: { $in: ids } } },
+        { $group: { _id: "$_id", categoryCount: { $sum: 1 } } },
+        { $match: { categoryCount: ids.length } },
+      ],
+      { budget: 1 }
+    );
+
     const budgets = await Budget.find({
-      category: req.params.id,
+      _id: { $in: budgetIDs },
       user: req.cookies.user,
     });
     res.status(200).json(budgets);
@@ -102,7 +116,7 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id/category/:categoryID", async (req, res) => {
+router.patch("/:id/categories/:categoryIDs", async (req, res) => {
   try {
     const budget = await Budget.findById(req.params.id);
     if (budget.user != req.cookies.user)
@@ -113,23 +127,31 @@ router.patch("/:id/category/:categoryID", async (req, res) => {
         message: "Budget is associated with wallet(s), cannot change category.",
       });
 
-    budget.category = req.params.categoryID;
-    const updatedBudget = await budget.save();
-    res.status(200).json(updatedBudget);
+    await BudgetCategory.deleteMany({ budget: budget._id });
+
+    const categoryIDs = req.params.categoryIDs.split(",");
+    categoryIDs.map((categoryID) => {
+      const budgetCategory = new BudgetCategory({
+        budget: budget._id,
+        category: categoryID,
+      });
+      budgetCategory.save();
+    });
+
+    res.status(200).json({ message: "Categories updated." });
   } catch (err) {
     res.json({ message: err });
   }
 });
 
-router.delete("/:id/category", async (req, res) => {
+router.delete("/:id/categories", async (req, res) => {
   try {
     const budget = await Budget.findById(req.params.id);
     if (budget.user != req.cookies.user)
       return res.status(401).json({ message: "Unauthorized" });
 
-    budget.category = null;
-    const updatedBudget = await budget.save();
-    res.status(200).json(updatedBudget);
+    await BudgetCategory.deleteMany({ budget: budget._id });
+    res.status(200).json({ message: "Categories deleted." });
   } catch (err) {
     res.json({ message: err });
   }
@@ -141,7 +163,7 @@ router.patch("/:id/wallets/:walletIDs", async (req, res) => {
     if (budget.user != req.cookies.user)
       return res.status(401).json({ message: "Unauthorized" });
 
-    if (budget.category)
+    if (await BudgetCategory.findOne({ budget: budget._id }))
       return res.status(400).json({
         message: "Budget is associated with category, cannot change wallets.",
       });
