@@ -5,6 +5,7 @@ const userRoutes = require("./routes/userRoutes/user");
 const walletRoutes = require("./routes/walletRoutes/wallet");
 const categoryRoutes = require("./routes/walletRoutes/category");
 const budgetRoutes = require("./routes/walletRoutes/budget");
+const transactionRoutes = require("./routes/walletRoutes/transaction");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
@@ -20,6 +21,7 @@ app.use("/user", userRoutes);
 app.use("/wallet", walletRoutes);
 app.use("/category", categoryRoutes);
 app.use("/budget", budgetRoutes);
+app.use("/transaction", transactionRoutes);
 
 process.on("SIGINT", async () => {
   closeConnect();
