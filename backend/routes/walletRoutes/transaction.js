@@ -146,3 +146,5 @@ router.delete("/:id", async (req, res) => {
     res.json({ message: err });
   }
 });
+
+module.exports = router;
