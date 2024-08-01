@@ -116,7 +116,7 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id/categories/:categoryIDs", async (req, res) => {
+router.patch("/:id/categories", async (req, res) => {
   try {
     const budget = await Budget.findById(req.params.id);
     if (budget.user != req.cookies.user)
@@ -129,7 +129,7 @@ router.patch("/:id/categories/:categoryIDs", async (req, res) => {
 
     await BudgetCategory.deleteMany({ budget: budget._id });
 
-    const categoryIDs = req.params.categoryIDs.split(",");
+    const categoryIDs = req.body.categoryIDs.split(",");
     categoryIDs.map((categoryID) => {
       const budgetCategory = new BudgetCategory({
         budget: budget._id,
@@ -157,7 +157,7 @@ router.delete("/:id/categories", async (req, res) => {
   }
 });
 
-router.patch("/:id/wallets/:walletIDs", async (req, res) => {
+router.patch("/:id/wallets", async (req, res) => {
   try {
     const budget = await Budget.findById(req.params.id);
     if (budget.user != req.cookies.user)
@@ -170,7 +170,7 @@ router.patch("/:id/wallets/:walletIDs", async (req, res) => {
 
     await BudgetWallet.deleteMany({ budget: budget._id });
 
-    const walletIDs = req.params.walletIDs.split(",");
+    const walletIDs = req.body.walletIDs.split(",");
     walletIDs.map((walletID) => {
       const budgetWallet = new BudgetWallet({
         budget: budget._id,
