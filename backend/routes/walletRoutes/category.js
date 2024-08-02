@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Category = require("../../models/Category");
-const Transaction = require("../../models/Transaction");
-const Budget = require("../../models/Budget");
+const Category = require("../../schema/CategorySchema");
+const Transaction = require("../../schema/TransactionSchema");
+const Budget = require("../../schema/BudgetSchema");
 
 router.get("/", async (req, res) => {
   try {

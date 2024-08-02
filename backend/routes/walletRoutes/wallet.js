@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Wallet = require("../../models/Wallet");
+const Wallet = require("../../schema/WalletSchema");
 
 router.get("/", async (req, res) => {
   try {

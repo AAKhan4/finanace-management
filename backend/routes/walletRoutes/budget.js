@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Budget = require("../../models/Budget");
-const BudgetWallet = require("../../models/BudgetWallet");
-const BudgetCategory = require("../../models/BudgetCategory");
+const Budget = require("../../schema/BudgetSchema");
+const BudgetWallet = require("../../schema/BudgetWalletSchema");
+const BudgetCategory = require("../../schema/BudgetCategorySchema");
 const mongoose = require("mongoose");
 
 router.get("/", async (req, res) => {

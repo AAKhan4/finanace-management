@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const signup = require("./signup");
 const login = require("./login");
-const User = require("../../models/User");
+const User = require("../../schema/UserSchema");
 
 router.use("/signup", signup);
 router.use("/login", login);
