@@ -3,7 +3,7 @@ const { connect, closeConnect } = require("./db/conn.js");
 
 const userRoutes = require("./routes/userRoutes.js");
 const walletRoutes = require("./routes/walletRoutes.js");
-const categoryRoutes = require("./routes/walletRoutes/category");
+const categoryRoutes = require("./routes/categoryRoutes.js");
 const budgetRoutes = require("./routes/walletRoutes/budget");
 const transactionRoutes = require("./routes/walletRoutes/transaction");
 const bodyParser = require("body-parser");
