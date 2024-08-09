@@ -5,7 +5,7 @@ const userRoutes = require("./routes/userRoutes.js");
 const walletRoutes = require("./routes/walletRoutes.js");
 const categoryRoutes = require("./routes/categoryRoutes.js");
 const budgetRoutes = require("./routes/walletRoutes/budget");
-const transactionRoutes = require("./routes/walletRoutes/transaction");
+const transactionRoutes = require("./routes/transactionRoutes.js");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
