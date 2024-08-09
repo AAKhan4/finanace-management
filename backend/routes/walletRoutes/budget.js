@@ -1,104 +1,20 @@
 const express = require("express");
 const router = express.Router();
+const budgetController = require("../../controllers/budgetController");
 const Budget = require("../../schema/BudgetSchema");
 const BudgetWallet = require("../../schema/BudgetWalletSchema");
 const BudgetCategory = require("../../schema/BudgetCategorySchema");
 const mongoose = require("mongoose");
 
-router.get("/", async (req, res) => {
-  try {
-    const budgets = await Budget.find({ user: req.cookies.user });
-    res.status(200).json(budgets);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
+router.get("/", budgetController.getByUser);
 
-router.get("/:id", async (req, res) => {
-  try {
-    const budget = await Budget.findById(req.params.id);
-    if (budget.user != req.cookies.user)
-      return res.status(401).json({ message: "Unauthorized" });
-  } catch (err) {
-    res.json({ message: err });
-  }
+router.get("/:id", budgetController.getById);
 
-  res.status(200).json(budget);
-});
+router.get("/category/:categories", budgetController.getByCategories);
 
-router.get("/category/:ids", async (req, res) => {
-  try {
-    const ids = req.params.ids
-      .split(",")
-      .map((id) => mongoose.Types.ObjectId(id));
+router.get("/wallet/:wallets", budgetController.getByWallets);
 
-    const budgetIDs = await BudgetCategory.aggregate(
-      [
-        { $match: { category: { $in: ids } } },
-        { $group: { _id: "$_id", categoryCount: { $sum: 1 } } },
-        { $match: { categoryCount: ids.length } },
-      ],
-      { budget: 1 }
-    );
-
-    const budgets = await Budget.find({
-      _id: { $in: budgetIDs },
-      user: req.cookies.user,
-    });
-    res.status(200).json(budgets);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
-
-router.get("/wallet/:ids", async (req, res) => {
-  try {
-    const ids = req.params.ids
-      .split(",")
-      .map((id) => mongoose.Types.ObjectId(id));
-
-    const budgetIDs = await BudgetWallet.aggregate(
-      [
-        { $match: { wallet: { $in: ids } } },
-        { $group: { _id: "$_id", walletCount: { $sum: 1 } } },
-        { $match: { walletCount: ids.length } },
-      ],
-      { budget: 1 }
-    );
-
-    const budgets = await Budget.find({
-      _id: { $in: budgetIDs },
-      user: req.cookies.user,
-    });
-    res.status(200).json(budgets);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
-
-router.post("/", async (req, res) => {
-  const budget = new Budget({
-    amount: req.body.amount,
-    type: req.body.type,
-    duration: req.body.duration,
-    category: req.body.category,
-    user: req.cookies.user,
-  });
-
-  try {
-    const savedBudget = await budget.save();
-    req.body.wallets.map((wallet) => {
-      const budgetWallet = new BudgetWallet({
-        budget: savedBudget._id,
-        wallet: wallet,
-      });
-      budgetWallet.save();
-    });
-    res.status(201).json(savedBudget);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
+router.post("/", budgetController.createBudget);
 
 router.patch("/:id", async (req, res) => {
   try {
