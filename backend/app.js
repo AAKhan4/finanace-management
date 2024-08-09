@@ -2,7 +2,7 @@ const express = require("express");
 const { connect, closeConnect } = require("./db/conn.js");
 
 const userRoutes = require("./routes/userRoutes.js");
-const walletRoutes = require("./routes/walletRoutes/wallet");
+const walletRoutes = require("./routes/walletRoutes.js");
 const categoryRoutes = require("./routes/walletRoutes/category");
 const budgetRoutes = require("./routes/walletRoutes/budget");
 const transactionRoutes = require("./routes/walletRoutes/transaction");
