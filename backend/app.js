@@ -1,7 +1,7 @@
 const express = require("express");
 const { connect, closeConnect } = require("./db/conn.js");
 
-const userRoutes = require("./routes/userRoutes/user");
+const userRoutes = require("./routes/userRoutes.js");
 const walletRoutes = require("./routes/walletRoutes/wallet");
 const categoryRoutes = require("./routes/walletRoutes/category");
 const budgetRoutes = require("./routes/walletRoutes/budget");
