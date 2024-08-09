@@ -75,6 +75,9 @@ exports.updateUser = async (req, res) => {
       .status(400)
       .send("Password cannot be updated through this route");
 
+  if (!(req.body.username || req.body.email))
+    return res.status(400).send("Missing fields to update");
+
   const user = userService.updateUser(req.cookies.user, req.body);
   if (!user) return res.status(404).send("User not found");
 
@@ -89,7 +92,7 @@ exports.updateUserPassword = async (req, res) => {
   if (!(req.body.password && req.body.newPassword))
     return res.status(400).send("Password & new Password is required");
 
-  const user = userService.getUserById(req.cookies.user);
+  let user = userService.getUserById(req.cookies.user);
   if (!user) return res.status(404).send("User not found");
   if (!bcrypt.compare(req.body.password, user.password))
     return res.status(401).send("Invalid password");
