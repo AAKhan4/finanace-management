@@ -84,6 +84,7 @@ exports.createBudget = async (amount, type, duration, user) => {
 exports.addWallets = async (id, wallets) => {
   try {
     wallets.map((wallet) => {
+      if (wallet === "") return;
       const budgetWallet = new BudgetWallet({
         budget: id,
         wallet,
@@ -98,12 +99,68 @@ exports.addWallets = async (id, wallets) => {
 exports.addCategories = async (id, categories) => {
   try {
     categories.map((category) => {
+      if (category === "") return;
       const budgetCategory = new BudgetCategory({
         budget: id,
         category,
       });
       budgetCategory.save();
     });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+exports.hasWallets = async (id) => {
+  try {
+    return await BudgetWallet.findOne({ budget: id });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+exports.hasCategories = async (id) => {
+  try {
+    return await BudgetCategory.findOne({ budget: id });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+exports.deleteWalletsFromBudget = async (id) => {
+  try {
+    await BudgetWallet.deleteMany({ budget: id });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+exports.deleteCategoriesFromBudget = async (id) => {
+  try {
+    await BudgetCategory.deleteMany({ budget: id });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+exports.updateBudget = async (id, data) => {
+  try {
+    const budget = await Budget.findById(id);
+    if (data.amount) budget.amount = data.amount;
+    if (data.type) budget.type = data.type;
+    if (data.duration) budget.duration = data.duration;
+
+    return await budget.save();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+exports.deleteBudget = async (id) => {
+  try {
+    await BudgetWallet.deleteMany({ budget: id });
+    await BudgetCategory.deleteMany({ budget: id });
+    await Budget.findByIdAndDelete(id);
   } catch (e) {
     console.log(e);
   }
