@@ -103,19 +103,19 @@ exports.getSpendingOverTime = async (id, startDate, endDate, interval) => {
   ]);
 };
 
-exports.getTransactionsByBudget = async (id, startDate, endDate) => {
+exports.getSpendingByBudget = async (id, startDate, endDate) => {
   const budgets = await Budget.find({ user: id });
 
   let transactions = [];
 
   for (const budget of budgets) {
-    const categoryTransactions = await getTransactionsByCategory(
+    const categoryTransactions = await getTransactionsByBudgetCategory(
       id,
       startDate,
       endDate,
       budget
     );
-    const walletTransactions = await getTransactionsByWallet(
+    const walletTransactions = await getTransactionsByBudgetWallet(
       id,
       startDate,
       endDate,
@@ -130,7 +130,7 @@ exports.getTransactionsByBudget = async (id, startDate, endDate) => {
   return transactions;
 };
 
-const getTransactionsByCategory = async (id, startDate, endDate, budget) => {
+const getTransactionsByBudgetCategory = async (id, startDate, endDate, budget) => {
   return await Transaction.aggregate([
     {
       $match: {
@@ -174,7 +174,7 @@ const getTransactionsByCategory = async (id, startDate, endDate, budget) => {
   ]);
 };
 
-const getTransactionsByWallet = async (id, startDate, endDate, budget) => {
+const getTransactionsByBudgetWallet = async (id, startDate, endDate, budget) => {
   return await Transaction.aggregate([
     {
       $match: {
