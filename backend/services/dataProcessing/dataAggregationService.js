@@ -103,4 +103,43 @@ exports.getSpendingOverTime = async (id, startDate, endDate, interval) => {
   ]);
 };
 
+const getTransactionsByBudget = async (id, startDate, endDate) => {
+  const budgets = {
+    budget: await Budget.find({ user: id }),
+    transactions: [],
+  };
 
+  budgets.budget.forEach((budget) => {
+    budgets.transactions.push(
+      Transaction.aggregate([
+        {
+          $match: {
+            user: id,
+            date: {
+              $gte: new Date(startDate),
+              $lte: new Date(endDate),
+            },
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            total: { $sum: "$amount" },
+          },
+        },
+        {
+          $lookup: {
+            from: "budgetCategories",
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            category: budget.category,
+            total: 1,
+          },
+        },
+      ])
+    );
+  });
+}
