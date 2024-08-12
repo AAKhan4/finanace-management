@@ -103,43 +103,117 @@ exports.getSpendingOverTime = async (id, startDate, endDate, interval) => {
   ]);
 };
 
-const getTransactionsByBudget = async (id, startDate, endDate) => {
-  const budgets = {
-    budget: await Budget.find({ user: id }),
-    transactions: [],
-  };
+exports.getTransactionsByBudget = async (id, startDate, endDate) => {
+  const budgets = await Budget.find({ user: id });
 
-  budgets.budget.forEach((budget) => {
-    budgets.transactions.push(
-      Transaction.aggregate([
-        {
-          $match: {
-            user: id,
-            date: {
-              $gte: new Date(startDate),
-              $lte: new Date(endDate),
-            },
-          },
-        },
-        {
-          $group: {
-            _id: null,
-            total: { $sum: "$amount" },
-          },
-        },
-        {
-          $lookup: {
-            from: "budgetCategories",
-          },
-        },
-        {
-          $project: {
-            _id: 0,
-            category: budget.category,
-            total: 1,
-          },
-        },
-      ])
+  let transactions = [];
+
+  for (const budget of budgets) {
+    const categoryTransactions = await getTransactionsByCategory(
+      id,
+      startDate,
+      endDate,
+      budget
     );
-  });
-}
+    const walletTransactions = await getTransactionsByWallet(
+      id,
+      startDate,
+      endDate,
+      budget
+    );
+
+    categoryTransactions
+      ? transactions.push(categoryTransactions)
+      : transactions.push(walletTransactions);
+  }
+
+  return transactions;
+};
+
+const getTransactionsByCategory = async (id, startDate, endDate, budget) => {
+  return await Transaction.aggregate([
+    {
+      $match: {
+        user: id,
+        date: {
+          $gte: new Date(startDate),
+          $lte: new Date(endDate),
+        },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: "$amount" },
+      },
+    },
+    {
+      $lookup: {
+        from: "budgetCategory",
+        localField: "category",
+        foreignField: "category",
+        as: "budgetCategory",
+      },
+    },
+    {
+      $unwind: "$budgetCategory",
+    },
+    {
+      $match: {
+        "budgetCategory.budget": budget._id,
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        budget: budget.name,
+        budgetAmount: budget.amount,
+        total: 1,
+      },
+    },
+  ]);
+};
+
+const getTransactionsByWallet = async (id, startDate, endDate, budget) => {
+  return await Transaction.aggregate([
+    {
+      $match: {
+        user: id,
+        date: {
+          $gte: new Date(startDate),
+          $lte: new Date(endDate),
+        },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: "$amount" },
+      },
+    },
+    {
+      $lookup: {
+        from: "budgetWallet",
+        localField: "wallet",
+        foreignField: "wallet",
+        as: "budgetWallet",
+      },
+    },
+    {
+      $unwind: "$budgetWallet",
+    },
+    {
+      $match: {
+        "budgetWallet.budget": budget._id,
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        budget: budget.name,
+        budgetAmount: budget.amount,
+        total: 1,
+      },
+    },
+  ]);
+};
