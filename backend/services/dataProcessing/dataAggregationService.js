@@ -20,7 +20,7 @@ exports.getSpendingsByCategory = async (id, startDate, endDate) => {
     },
     {
       $lookup: {
-        from: "categories",
+        from: "category",
         localField: "_id",
         foreignField: "_id",
         as: "category",
@@ -55,7 +55,7 @@ exports.getSpendingsByWallet = async (id, startDate, endDate) => {
     },
     {
       $lookup: {
-        from: "wallets",
+        from: "wallet",
         localField: "_id",
         foreignField: "_id",
         as: "wallet",
