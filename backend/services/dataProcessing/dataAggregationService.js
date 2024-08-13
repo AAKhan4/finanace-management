@@ -143,7 +143,12 @@ const getTransactionsByBudgetCategory = async (id, startDate, endDate, budget) =
     },
     {
       $group: {
-        _id: null,
+        _id: {
+          day: { $dayOfMonth: "$date" },
+          week: { $week: "$date" },
+          month: { $month: "$date" },
+          year: { $year: "$date" },
+        }[budget.type],
         total: { $sum: "$amount" },
       },
     },
@@ -187,7 +192,12 @@ const getTransactionsByBudgetWallet = async (id, startDate, endDate, budget) => 
     },
     {
       $group: {
-        _id: null,
+        _id: {
+          day: { $dayOfMonth: "$date" },
+          week: { $week: "$date" },
+          month: { $month: "$date" },
+          year: { $year: "$date" },
+        }[budget.type],
         total: { $sum: "$amount" },
       },
     },
