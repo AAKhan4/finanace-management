@@ -52,7 +52,14 @@ exports.findByType = async (type, user) => {
   }
 };
 
-exports.createTransaction = async (amount, type, category, wallet, user, description) => {
+exports.createTransaction = async (
+  amount,
+  type,
+  category,
+  wallet,
+  user,
+  description
+) => {
   try {
     const transaction = new Transaction({
       amount,
@@ -85,4 +92,48 @@ exports.deleteTransaction = async (id) => {
   } catch (e) {
     console.log(e);
   }
+};
+
+exports.transactionRecurrence = async (date, type) => {
+  let query;
+  switch (type) {
+    case "daily":
+      query = {
+        type,
+        $expr: { $gt: [date, "$date"] },
+      };
+      break;
+    case "weekly":
+      query = {
+        type,
+        $expr: { $eq: [{ $dayOfWeek: date }, { $dayOfWeek: "$date" }] },
+      };
+      break;
+    case "monthly":
+      query = {
+        type,
+        $expr: { $eq: [{ $month: date }, { $month: "$date" }] },
+      };
+      break;
+    case "annual":
+      query = {
+        type,
+        $expr: { $eq: [{ $dayOfYear: date }, { $dayOfYear: "$date" }] },
+      };
+      break;
+    default:
+      return;
+  }
+
+  Transaction.find(query).forEach(async (transaction) => {
+    const newTransaction = new Transaction({
+      amount: transaction.amount,
+      type: "recurring",
+      category: transaction.category,
+      wallet: transaction.wallet,
+      user: transaction.user,
+      description: transaction.description,
+    });
+    await newTransaction.save();
+  });
 };
