@@ -1,16 +1,21 @@
 const Queue = require("bull");
 const redisClient = require("./redis");
+const { transactionRecurrence } = require("./transactionService");
 
 const queue = new Queue("myQueue", {
   redis: {
-    host: "localhost",
-    port: process.env.REDIS_PORT,
+    host: redisClient.options.host,
+    port: redisClient.options.port,
   },
 });
 
 queue.process(async (job) => {
-  console.log(job.data);
-  return job.data;
+  if (job.type === "transactionRecurrence") {
+    if (await transactionRecurrence(Date.now(), job.data.type))
+      job.status = "completed";
+    else job.status = "failed";
+    return job;
+  }
 });
 
 const addJob = async (job) => {
@@ -18,6 +23,6 @@ const addJob = async (job) => {
 };
 
 module.exports = {
-    queue,
-    addJob,
+  queue,
+  addJob,
 };
