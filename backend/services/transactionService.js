@@ -115,7 +115,7 @@ exports.transactionRecurrence = async (date, type) => {
         $expr: { $eq: [{ $month: date }, { $month: "$date" }] },
       };
       break;
-    case "annual":
+    case "yearly":
       query = {
         type,
         $expr: { $eq: [{ $dayOfYear: date }, { $dayOfYear: "$date" }] },
@@ -125,15 +125,26 @@ exports.transactionRecurrence = async (date, type) => {
       return;
   }
 
-  Transaction.find(query).forEach(async (transaction) => {
-    const newTransaction = new Transaction({
-      amount: transaction.amount,
-      type: "recurring",
-      category: transaction.category,
-      wallet: transaction.wallet,
-      user: transaction.user,
-      description: transaction.description,
+  try {
+    await Transaction.find(query).forEach(async (transaction) => {
+      const newTransaction = new Transaction({
+        amount: transaction.amount,
+        type: "recurring",
+        category: transaction.category,
+        wallet: transaction.wallet,
+        user: transaction.user,
+        description: transaction.description,
+      });
+      try {
+        await newTransaction.save();
+      } catch (e) {
+        console.log(e);
+        return false;
+      }
     });
-    await newTransaction.save();
-  });
+    return true;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
 };
