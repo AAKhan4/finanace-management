@@ -1,4 +1,5 @@
 const Job = require("../schema/JobSchema");
+const { queue } = require("./queue");
 
 exports.createJob = async (type, description, user, data) => {
   try {
@@ -36,4 +37,21 @@ exports.deleteJob = async (id) => {
   } catch (e) {
     console.log(e);
   }
+};
+
+exports.scheduleTransactionRecurrence = async (types) => {
+  types.forEach(async (type) => {
+    const job = new Job({
+      type: "transactionRecurrence",
+      description: "Recurring transactions",
+      data: { type },
+    });
+  
+    try {
+      await job.save();
+    } catch (e) {
+      console.log(e);
+    }
+    queue.add(job);
+  });
 };
