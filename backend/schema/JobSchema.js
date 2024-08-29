@@ -27,3 +27,5 @@ const JobSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+const job = mongoose.model("job", jobSchema);
+module.exports = job;
