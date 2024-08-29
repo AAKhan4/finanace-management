@@ -52,6 +52,6 @@ exports.scheduleTransactionRecurrence = async (types) => {
     } catch (e) {
       console.log(e);
     }
-    queue.add(job);
+    queue.add(job, { repeat: { cron: "0 2 * * *" } });
   });
 };
