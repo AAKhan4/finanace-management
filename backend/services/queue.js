@@ -11,10 +11,30 @@ const queue = new Queue("myQueue", {
 
 queue.process(async (job) => {
   if (job.type === "transactionRecurrence") {
-    if (await transactionRecurrence(Date.now(), job.data.type))
-      job.status = "completed";
-    else job.status = "failed";
-    return job;
+    try {
+      job.status = "processing";
+      await job.save();
+      const type = job.data.type;
+      const date = Date.now();
+
+      if (await transactionRecurrence(date, type)) job.status = "completed";
+      else {
+        console.log(
+          "Recurrence handling failed for ",
+          type,
+          " transactions. Date: ",
+          date
+        );
+        job.status = "failed";
+      }
+      await job.save();
+      return job;
+    } catch (error) {
+      console.error("Error occurred while processing job:", error);
+      job.status = "failed";
+      await job.save();
+      throw error;
+    }
   }
 });
 
