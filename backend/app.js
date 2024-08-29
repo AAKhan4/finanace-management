@@ -1,6 +1,8 @@
 const express = require("express");
 const { connect, closeConnect } = require("./db/conn.js");
 
+const { scheduleTransactionRecurrence } = require("./services/jobService.js");
+
 const userRoutes = require("./routes/userRoutes.js");
 const walletRoutes = require("./routes/walletRoutes.js");
 const categoryRoutes = require("./routes/categoryRoutes.js");
@@ -37,7 +39,9 @@ process.on("SIGTERM", async () => {
   process.exit();
 });
 
-app.listen(PORT, (e) => {
+app.listen(PORT, async (e) => {
   if (!e) console.log(`Server is running on port ${PORT}`);
   else console.log(e);
+
+  await scheduleTransactionRecurrence(["daily", "weekly", "monthly", "yearly"]);
 });
