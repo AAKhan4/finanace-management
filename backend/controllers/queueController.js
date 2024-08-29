@@ -75,3 +75,15 @@ exports.getJobsByUser = async (req, res) => {
       res.status(500).send(e.message);
     });
 };
+
+exports.getJobById = async (req, res) => {
+  const id = req.params.id;
+  jobService
+    .getJobById(id)
+    .then((job) => {
+      res.status(200).send(job);
+    })
+    .catch((e) => {
+      res.status(500).send(e.message);
+    });
+};
