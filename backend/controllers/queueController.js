@@ -4,11 +4,17 @@ const jobService = require("../services/jobService");
 exports.queueJob = async (req, res) => {
   const { jobId } = req.body;
   const job = await jobService.getJobById(jobId);
+  if (!job)
+    return res.status(404).send("Job not found");
+  job.status = "queued";
+  job.save();
   addJob(job)
     .then(() => {
       res.status(200).send("Job added to the queue");
     })
     .catch((e) => {
+      job.status = "failed";
+      job.save();
       res.status(500).send(e.message);
     });
 };
