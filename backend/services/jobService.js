@@ -1,5 +1,4 @@
 const Job = require("../schema/JobSchema");
-const Transaction = require("../schema/TransactionSchema");
 const { queue } = require("./queue");
 
 exports.createJob = async (type, description, user, data) => {
