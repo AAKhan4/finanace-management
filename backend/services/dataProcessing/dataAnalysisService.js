@@ -40,7 +40,7 @@ exports.getTransactionsMode = async (userId, startDate, endDate) => {
   return Object.keys(mode).reduce((a, b) => (mode[a] > mode[b] ? a : b));
 };
 
-exports.getTransactionsStandardDeviation = async (userId, startDate, endDate) => {
+exports.getTransactionsSD = async (userId, startDate, endDate) => {
   const transactions = await Transaction.find({
     userId,
     date: { $gte: startDate, $lte: endDate },
